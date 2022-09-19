@@ -11,10 +11,7 @@ public class CalculatorController {
     public CalculatorController(CalculatorService CalculatorService) {
         this.CalculatorService = CalculatorService;
     }
-    @GetMapping
-    public  String hello() {
-        return  CalculatorService.hello();
-    }
+
     @GetMapping(path = "/calculator")
     public  String dobro() {
         return CalculatorService.dobro();
@@ -24,7 +21,8 @@ public class CalculatorController {
         if (num1 == 0 || num2 == 0) {
             return CalculatorService.nul();
         }
-        return CalculatorService.plus1(num1,num2);
+        int sum = CalculatorService.plus1(num1,num2);
+        return num1 + "<b> + </b>" + num2 + "<b> = </b>" + sum;
 
     }
 
@@ -33,7 +31,8 @@ public class CalculatorController {
         if (num1 == 0 || num2 == 0) {
             return CalculatorService.nul();
         }
-        return CalculatorService.minus(num1,num2);
+        int min = CalculatorService.minus(num1,num2);
+        return num1 + "<b> - </b>" + num2 + "<b> = </b>" +min;
 
     }
 
@@ -42,7 +41,8 @@ public class CalculatorController {
         if (num1 == 0 || num2 == 0) {
             return CalculatorService.nul();
         }
-        return CalculatorService.multiply(num1,num2);
+        int mul = CalculatorService.multiply(num1,num2);
+        return num1 + "<b> * </b>" + num2 + "<b> = </b>" +mul;
 
     }
 
@@ -51,7 +51,11 @@ public class CalculatorController {
         if (num1 == 0 || num2 == 0) {
             return CalculatorService.nul();
         }
-        return CalculatorService.divide(num1,num2);
+        if ( num2 == 0) {
+            return "<b>делить на ноль нельзя</b>";
+        }
+        int div = CalculatorService.multiply(num1,num2);
+        return num1 + "<b> * </b>" + num2 + "<b> = </b>" + div;
 
     }
 
