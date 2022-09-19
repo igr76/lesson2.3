@@ -11,25 +11,27 @@ public class CalculatorController {
     public CalculatorController(CalculatorService CalculatorService) {
         this.CalculatorService = CalculatorService;
     }
-
+    @GetMapping
+    public  String hello() {
+        return  CalculatorService.hello();
+    }
     @GetMapping(path = "/calculator")
-    public String dobro() {
-        return  "<b>добро пожаловать в калькулятор</b>" ;}
-
+    public  String dobro() {
+        return CalculatorService.dobro();
+    }
     @GetMapping(path = "/calculator/plus")
     public String plus1(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
         if (num1 == 0 || num2 == 0) {
-            return "<b> нехватает данных</b>" ;
+            return CalculatorService.nul();
         }
-         CalculatorService.plus1(num1,num2);
-        return num1 + "<b> + </b>" + num2 + "<b> = </b>" + (num1 + num2);
+        return CalculatorService.plus1(num1,num2);
 
     }
 
     @GetMapping(path = "/calculator/minus")
     public String minus(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
         if (num1 == 0 || num2 == 0) {
-            return "<b> нехватает данных</b>" ;
+            return CalculatorService.nul();
         }
         return CalculatorService.minus(num1,num2);
 
@@ -38,7 +40,7 @@ public class CalculatorController {
     @GetMapping(path = "/calculator/multiply")
     public String multiply(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
         if (num1 == 0 || num2 == 0) {
-            return "<b> нехватает данных</b>" ;
+            return CalculatorService.nul();
         }
         return CalculatorService.multiply(num1,num2);
 
@@ -47,7 +49,7 @@ public class CalculatorController {
     @GetMapping(path = "/calculator/divide")
     public String divide(@RequestParam("num1") int num1,@RequestParam("num2") int num2) {
         if (num1 == 0 || num2 == 0) {
-            return "<b> нехватает данных</b>" ;
+            return CalculatorService.nul();
         }
         return CalculatorService.divide(num1,num2);
 
